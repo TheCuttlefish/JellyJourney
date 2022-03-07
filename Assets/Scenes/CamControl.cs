@@ -15,7 +15,7 @@ public class CamControl : MonoBehaviour
     {
         transform.position = player.transform.position - new Vector3(0,0,-10);
         pointerIcon=  Instantiate(pointerIcon);
-        scale = Camera.main.orthographicSize;
+        scale = GetComponent<Camera>().orthographicSize;
     }
 
     private void Update()
@@ -39,7 +39,7 @@ public class CamControl : MonoBehaviour
     {
         if (Input.mouseScrollDelta.y > 0) scale--;
         if (Input.mouseScrollDelta.y < 0) scale++;
-        Camera.main.orthographicSize -= (Camera.main.orthographicSize - scale) / 10;
+        GetComponent<Camera>().orthographicSize -= (GetComponent<Camera>().orthographicSize - scale) / 10;
     }
 
     void Click()
@@ -47,7 +47,7 @@ public class CamControl : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
 
-            float camZ = Mathf.Abs(Camera.main.transform.position.z);
+            float camZ = Mathf.Abs(GetComponent<Camera>().transform.position.z);
             mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, camZ);
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
            
